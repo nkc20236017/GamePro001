@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     GameObject player;
+    GameObject myshot;
     void Start()
     {
         this.player = GameObject.Find("MyChar");
+        this.myshot = GameObject.Find("MyShotPrefab");
     }
 
     void Update()
@@ -19,16 +21,25 @@ public class EnemyController : MonoBehaviour
         }
         Vector2 p1=transform.position;
         Vector2 p2=player.transform.position;
+        Vector2 p3=myshot.transform.position;
         Vector2 dir = p1 - p2;
+        Vector2 dir2 = p1 - p3;
         float d=dir.magnitude;
+        float e=dir2.magnitude;
         float r1 = 0.5f;
         float r2 = 1.0f;
+        float r3 = 0.3f;
 
         if (d<r1+r2)
         {
             GameObject director = GameObject.Find("GameDirector");
             director.GetComponent<GameDirector>().DecreaseHp();
             Destroy(gameObject);
+        }
+        if (e < r1 + r3)
+        {
+            Destroy(gameObject);
+            Destroy(myshot.gameObject);
         }
     }
 }

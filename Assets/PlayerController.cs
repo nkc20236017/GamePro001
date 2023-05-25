@@ -11,21 +11,35 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        int Key_x = 0;
+        int Key_y = 0;
+
+        Animation animator = GetComponent<Animation>();
+        int trans = animator.GetInteger("trans");
+
         if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -8.5f)//ç∂
         {
-            transform.Translate(0,-0.2f,0);
+            Key_y = -1;
+            trans--;
         }
         if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 8.5f)//âE
         {
-            transform.Translate(0,0.2f, 0);
+            Key_y = 1;
+            trans++;
         }
         if (Input.GetKey(KeyCode.UpArrow) && transform.position.y < 4.5f)//è„
         {
-            transform.Translate(-0.2f, 0, 0);
+            Key_x = -1;
         }
         if (Input.GetKey(KeyCode.DownArrow) && transform.position.y > -4.5f)//â∫
         {
-            transform.Translate(0.2f, 0, 0);
+            Key_x = 1;
         }
+
+        Vector2 dir;
+        dir.x= Key_x * 0.2f;
+        dir.y =  Key_y * 0.2f;
+        transform.Translate(dir);
+        animator.SetInteger("trans",trans);
     }
 }
