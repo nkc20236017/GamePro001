@@ -4,42 +4,35 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    GameObject player;
-    GameObject myshot;
+    GameObject director;
+    Rigidbody2D rigid2D;
     void Start()
     {
-        this.player = GameObject.Find("MyChar");
-        this.myshot = GameObject.Find("MyShotPrefab");
+        this.director = GameObject.Find("GameDirector");
+        this.rigid2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
+        void Update()
+        {
         transform.Translate(-0.1f, 0, 0);
         if (transform.position.x<-11)
         {
             Destroy(gameObject);
-        }
-        Vector2 p1=transform.position;
-        Vector2 p2=player.transform.position;
-        Vector2 p3=myshot.transform.position;
-        Vector2 dir = p1 - p2;
-        Vector2 dir2 = p1 - p3;
-        float d=dir.magnitude;
-        float e=dir2.magnitude;
-        float r1 = 0.5f;
-        float r2 = 1.0f;
-        float r3 = 0.3f;
 
-        if (d<r1+r2)
-        {
-            GameObject director = GameObject.Find("GameDirector");
-            director.GetComponent<GameDirector>().DecreaseHp();
-            Destroy(gameObject);
         }
-        if (e < r1 + r3)
+
+        void OnTriggerEnter2D(Collider2D other)
         {
-            Destroy(gameObject);
-            Destroy(myshot.gameObject);
+            if (other.gameObject.tag=="MyChar")
+            {
+                director.GetComponent<GameDirector>().DecreaseHp();
+                Destroy(gameObject);
+            }
+            if (other.gameObject.tag=="MyShot")
+            {
+                Destroy(gameObject);
+                Destroy(other.gameObject);
+            }
         }
     }
 }

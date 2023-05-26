@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MyShotController : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
