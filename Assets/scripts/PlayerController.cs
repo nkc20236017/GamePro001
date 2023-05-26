@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    float x;
+    float y;
 
     void Start()
     {
@@ -17,20 +19,22 @@ public class PlayerController : MonoBehaviour
         int Key_y = 0;
         int judge = animator.GetInteger("Judge");
         judge = 0;
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -8.5f)//ç∂
+        x=Input.GetAxisRaw("Horizontal");
+        y=Input.GetAxisRaw("Vertical");
+        if (x < 0 && transform.position.x > -8.5f)//ç∂
         {
             Key_y = -1;
                     }
-        else if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 8.5f)//âE
+        if (x > 0 && transform.position.x < 8.5f)//âE
         {
             Key_y = 1;
                     }
-        if (Input.GetKey(KeyCode.UpArrow) && transform.position.y < 4.5f)//è„
+        if (y > 0 && transform.position.y < 4.5f)//è„
         {
             Key_x = -1;
             judge=1;
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && transform.position.y > -4.5f)//â∫
+        else if (y < 0 && transform.position.y > -4.5f)//â∫
         {
             Key_x = 1;
             judge=-1;
