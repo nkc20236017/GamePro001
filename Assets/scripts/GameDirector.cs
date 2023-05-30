@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameDirector : MonoBehaviour
 {
     GameObject HpGauge;
+    public GameObject panel;
+    public bool Judge=true;
     void Start()
     {
         this.HpGauge = GameObject.Find("HpGauge");
@@ -16,7 +18,12 @@ public class GameDirector : MonoBehaviour
         this.HpGauge.GetComponent<Image>().fillAmount -= 0.0001f;
         if (this.HpGauge.GetComponent<Image>().fillAmount<=0)
         {
-            SceneManager.LoadScene("StartScene");
+            panel.SetActive(true);
+            Judge = false;
+            if (Input.GetMouseButtonDown(0)||Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("StartScene");
+            }
         }
     }
 

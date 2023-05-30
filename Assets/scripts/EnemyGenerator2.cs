@@ -2,25 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGenerator : MonoBehaviour
+public class EnemyGenerator2 : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    GameObject director;
-    float span = 1.0f;
+    float span = 1f;
     float delta = 0;
-
-    void Start()
-    {
-        this.director = GameObject.Find("GameDirector");
-    }
     void Update()
     {
-        if (director.GetComponent<GameDirector>().Judge)
-        {
-            if (span > 0.3f)
-            {
-                span -= 0.0001f;
-            }
             this.delta += Time.deltaTime;
             if (this.delta > this.span)
             {
@@ -29,6 +17,5 @@ public class EnemyGenerator : MonoBehaviour
                 int px = Random.Range(-4, 5);
                 go.transform.position = new Vector3(11, px, 0);
             }
-        }
     }
 }

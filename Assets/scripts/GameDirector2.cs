@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameDirector2 : MonoBehaviour
 {
-    GameObject Text;
+    public Text text;
+    public Text text2;
 
     void Start()
     {
-        this.Text = GameObject.Find("Text");
+        Application.targetFrameRate = 60;
     }
 
     void Update()
     {
-        this.Text.GetComponent<TextMeshProUGUI>().text =
-            "    GamePro001\nMouseButton0 Start";
-            if (Input.GetMouseButtonDown(0))
+        text.text ="GamePro001";
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("GameScene");
         }
+        text2.text = "GameStart!";
     }
 }

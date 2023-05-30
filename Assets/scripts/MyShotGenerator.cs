@@ -5,6 +5,7 @@ using UnityEngine;
 public class MyShotGenerator : MonoBehaviour
 {
     public GameObject MyShotPrefab;
+    GameObject director;
     GameObject player;
     float span = 1.0f;
     float delta = 1.0f;
@@ -12,18 +13,22 @@ public class MyShotGenerator : MonoBehaviour
     void Start()
     {
         this.player = GameObject.Find("MyChar");
+        this.director = GameObject.Find("GameDirector");
     }
 
     void Update()
     {
-        this.delta += Time.deltaTime;
-        if (this.delta > this.span)
+        if (director.GetComponent<GameDirector>().Judge)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            this.delta += Time.deltaTime;
+            if (this.delta > this.span)
             {
-                this.delta = 0;
-                GameObject go = Instantiate(MyShotPrefab);
-                go.transform.position = new Vector3(player.transform.position.x + 1, player.transform.position.y, 0);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    this.delta = 0;
+                    GameObject go = Instantiate(MyShotPrefab);
+                    go.transform.position = new Vector3(player.transform.position.x + 1, player.transform.position.y, 0);
+                }
             }
         }
     }

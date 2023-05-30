@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     float x;
     float y;
+    GameObject director;
 
     void Start()
     {
         Application.targetFrameRate = 60;
+        this.director = GameObject.Find("GameDirector");
     }
 
     void Update()
@@ -19,8 +21,11 @@ public class PlayerController : MonoBehaviour
         int Key_y = 0;
         int judge = animator.GetInteger("Judge");
         judge = 0;
-        x=Input.GetAxisRaw("Horizontal");
-        y=Input.GetAxisRaw("Vertical");
+        if (director.GetComponent<GameDirector>().Judge)
+        {
+            x = Input.GetAxisRaw("Horizontal");
+            y = Input.GetAxisRaw("Vertical");
+        }
         if (x < 0 && transform.position.x > -8.5f)//ç∂
         {
             Key_y = -1;
