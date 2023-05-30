@@ -7,8 +7,8 @@ public class MyShotGenerator : MonoBehaviour
     public GameObject MyShotPrefab;
     GameObject director;
     GameObject player;
-    float span = 1.0f;
-    float delta = 1.0f;
+    float span = 0.5f;
+    float delta = 0.5f;
 
     void Start()
     {

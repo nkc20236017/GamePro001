@@ -10,7 +10,6 @@ public class EnemyController2 : MonoBehaviour
         if (transform.position.x < -11)
         {
             Destroy(gameObject);
-
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     public GameObject EnemyPrefab;
+    public GameObject ItemPrefab;
     GameObject director;
     float span = 1.0f;
     float delta = 0;
@@ -17,7 +18,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (director.GetComponent<GameDirector>().Judge)
         {
-            if (span > 0.3f)
+            if (span > 0.2f)
             {
                 span -= 0.0001f;
             }
@@ -25,9 +26,20 @@ public class EnemyGenerator : MonoBehaviour
             if (this.delta > this.span)
             {
                 this.delta = 0;
-                GameObject go = Instantiate(EnemyPrefab);
-                int px = Random.Range(-4, 5);
-                go.transform.position = new Vector3(11, px, 0);
+                int random = Random.Range(0,31);
+                if (random!=0)
+                {
+                    GameObject go = Instantiate(EnemyPrefab);
+                    int px = Random.Range(-4, 5);
+                    go.transform.position = new Vector3(11, px, 0);
+                }
+                else
+                {
+                    GameObject go = Instantiate(ItemPrefab);
+                    int px = Random.Range(-4, 5);
+                    go.transform.position = new Vector3(11, px, 0);
+                }
+
             }
         }
     }
