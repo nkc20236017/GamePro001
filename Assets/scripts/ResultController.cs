@@ -26,8 +26,8 @@ public class ResultController : MonoBehaviour
 
     void Update()
     {
-        text.text = "リザルト\n\n"+score.ToString( ) + "km";
-        text2.text = "ハイスコア\n\n" + highscore.ToString() + "km";
+        text.text = "リザルト\n\n"+score.ToString( ) + "P";
+        text2.text = "ハイスコア\n\n" + highscore.ToString() + "P";
         text3.text = "タイトルに戻る";
     }
 }

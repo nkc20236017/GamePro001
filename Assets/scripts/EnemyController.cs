@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject enemyDeath;
+    public int a;
     GameObject director;
     Rigidbody2D rigid2D;
     void Start()
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
             if (other.gameObject.tag=="MyShot")
             {
             Instantiate(enemyDeath.gameObject, this.transform.position, this.transform.rotation);
+            director.GetComponent<ScoreController>().AddPoint();
             Destroy(gameObject);
                 Destroy(other.gameObject);
             }

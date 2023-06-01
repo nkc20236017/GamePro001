@@ -6,17 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
-    GameObject HpGauge;
     public GameObject panel;
+    public GameObject bosHPGauge;
+    public Slider slider;
+    public Slider slider2;
     public bool Judge=true;
     void Start()
     {
-        this.HpGauge = GameObject.Find("HpGauge");
+        slider.value = 1;
     }
     void Update()
     {
-        this.HpGauge.GetComponent<Image>().fillAmount -= 0.0001f;
-        if (this.HpGauge.GetComponent<Image>().fillAmount<=0)
+        if (this.slider.value <= 0.1f)
         {
             panel.SetActive(true);
             Judge = false;
@@ -29,10 +30,19 @@ public class GameDirector : MonoBehaviour
 
     public void DecreaseHp()
     {
-        this.HpGauge.GetComponent<Image>().fillAmount -= 0.1f;
+        this.slider.value -= 0.2f;
     }
     public void DecreaseHp2()
     {
-        this.HpGauge.GetComponent<Image>().fillAmount += 0.05f;
+        this.slider.value += 0.1f;
+    }
+    public void DecreaseHpBos()
+    {
+        this.slider2.value -= 0.1f;
+    }
+    public void BosEvent()
+    {
+        bosHPGauge.SetActive(true);
+        this.slider2.value = 2;
     }
 }

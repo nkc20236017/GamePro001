@@ -6,6 +6,7 @@ public class EnemyGenerator : MonoBehaviour
 {
     public GameObject EnemyPrefab;
     public GameObject ItemPrefab;
+    public GameObject BosEnemyPrefab;
     GameObject director;
     float span = 1.0f;
     float delta = 0;
@@ -18,7 +19,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (director.GetComponent<GameDirector>().Judge)
         {
-            if (span > 0.2f)
+            if (span > 0.3f)
             {
                 span -= 0.0001f;
             }
@@ -39,7 +40,11 @@ public class EnemyGenerator : MonoBehaviour
                     int px = Random.Range(-4, 5);
                     go.transform.position = new Vector3(11, px, 0);
                 }
-
+                if (director.GetComponent<ScoreController>().bosEvent)
+                {
+                    Instantiate(BosEnemyPrefab);
+                    director.GetComponent<ScoreController>().bosEvent=false;
+                }
             }
         }
     }
