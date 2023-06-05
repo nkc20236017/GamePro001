@@ -6,21 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class GameDirector2 : MonoBehaviour
 {
-    public Text text;
-    public Text text2;
-
+    public static int mode = 1;
+    public GameObject hardPanel;
+    public GameObject easyPanel;
     void Start()
     {
         Application.targetFrameRate = 60;
     }
 
-    void Update()
+    public void GameStartButton()
     {
-        text.text ="GamePro001";
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-        {
             SceneManager.LoadScene("GameScene");
-        }
-        text2.text = "GameStart!";
+    }
+    public void EasyButtonEvent()
+    {
+        mode = 1;
+        hardPanel.SetActive(true);
+        easyPanel.SetActive(false);
+    }
+    public void HardButtonEvent()
+    {
+        mode = 2;
+        easyPanel.SetActive(true);
+        hardPanel.SetActive(false);
     }
 }

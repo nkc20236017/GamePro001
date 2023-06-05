@@ -43,7 +43,15 @@ public class BosEnemyController : MonoBehaviour
         if (transform.position.x < -11&&bosposi==false)
         {
             a = Random.Range(-4, 5);
-            b = Random.Range(0, 3);
+            if (GameDirector2.mode == 2)
+            {
+                b = Random.Range(0, 3);
+            }
+            else
+            {
+                b = 2;
+            }
+            
             transform.position = new Vector3(11, a, 0);
         }
 
@@ -57,7 +65,7 @@ public class BosEnemyController : MonoBehaviour
         }
         if (other.gameObject.tag == "MyShot")
         {
-            Destroy(other.gameObject);
+                Destroy(other.gameObject);
             bosHP--;
             director.GetComponent<GameDirector>().DecreaseHpBos();
             if (bosHP<=0)

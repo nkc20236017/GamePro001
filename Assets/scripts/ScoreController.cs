@@ -22,16 +22,9 @@ public class ScoreController : MonoBehaviour
     void Update()
     {
         text.text = a.ToString("D7")+"P";
-        if (a>=b)
+        if (a>=b && bosEvent == false)
         {
-            if (b<=27000)
-            {
-                b += 7500;
-            }
-            else
-            {
-                b += 15000;
-            }
+                b += 10000;
             director.GetComponent<GameDirector>().BosEvent();
             bosEvent = true;
         }
@@ -40,14 +33,28 @@ public class ScoreController : MonoBehaviour
     {
         if (director.GetComponent<GameDirector>().Judge)
         {
-            a += 100;
+            if (GameDirector2.mode == 2)
+            {
+                a += 100;
+            }
+            else
+            {
+                a += 50;
+            }
         }
     }
     public void AddPoint2()
     {
         if (director.GetComponent<GameDirector>().Judge)
         {
-            a += 2000;
+            if (GameDirector2.mode == 2)
+            {
+                a += 2000;
+            }
+            else
+            {
+                a += 1000;
+            }
         }
     }
 }

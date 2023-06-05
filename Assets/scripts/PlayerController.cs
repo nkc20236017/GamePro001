@@ -44,10 +44,11 @@ public class PlayerController : MonoBehaviour
             Key_x = 1;
             judge=-1;
         }
-
+        
         Vector2 dir;
-        dir.x= Key_x * 0.2f;
-        dir.y =  Key_y * 0.2f;
+        dir.x= Key_x;
+        dir.y =  Key_y;
+        dir=dir.normalized *  0.2f;
         transform.Translate(dir);
         animator.SetInteger("Judge",judge);
     }

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class ItemController : MonoBehaviour
     GameObject director;
     GameObject player;
     public GameObject itemcatch;
+    public bool itemEvent = false;
     void Start()
     {
         this.player = GameObject.Find("MyChar");
@@ -20,6 +22,7 @@ public class ItemController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,6 +31,6 @@ public class ItemController : MonoBehaviour
             Instantiate(itemcatch.gameObject, player.transform.position, this.transform.rotation);
             director.GetComponent<GameDirector>().DecreaseHp2();
             Destroy(gameObject);
-        }
+            }
     }
 }
